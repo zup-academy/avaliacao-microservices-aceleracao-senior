@@ -2,7 +2,7 @@
 
 Sitema de Notas Ficais é um modulo importante do ecosistema de microsserviços, é através deste que as vendas tem suas notas geradas, e os usuarios recebem a confirmação da compra, junto a nota fiscal.
 
-Este sistema deve ouvir o topico de `Venda` do Kafka, e para cada evento de venda, deverá processar a nota, e armazena-la com um identificador numero de 5 caracteres.
+Este sistema deve ouvir o topico de `Venda` do Kafka, e para cada evento de venda, deverá processar a nota, e armazena-la no banco de dados com um identificador numero de 5 caracteres.
 
 Quando uma notafiscal é processada, ela pode ficar em dois estados: 
 
@@ -37,4 +37,4 @@ A Nota fiscal quando processada deve corresponder ao seguinte schema:
 }
 ```
 
-Da tempo em tempo, todas as notas geradas com o status: `GERADA`, devem ser enviadas em XML para o email do usuario junto a uma mensagem de confirmação de compra para o numero do pedido.
+Da tempo em tempo, todas as notas geradas com o status: `GERADA`, devem ser enviadas em XML para o email do usuario junto a uma mensagem de confirmação de compra para o numero do pedido. E quando uma nota for enviada por email seu status deve ser alterado para `GERADA_E_ENVIADA`.
